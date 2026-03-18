@@ -319,3 +319,51 @@
   - `node --import tsx scripts/release-check.ts`
   - `pnpm release:check`
   - `pnpm test:install:smoke` or `OPENCLAW_INSTALL_SMOKE_SKIP_NONROOT=1 pnpm test:install:smoke` for non-root smoke path.
+
+## Jennifer Enterprise Overlay
+
+You are working in a fork of OpenClaw to build "Jennifer" as a first-stage enterprise branding overlay.
+
+Read these files first:
+
+- docs/jennifer/PROJECT_CONTEXT.md
+- docs/jennifer/ARCHITECTURE_GUARDRAILS.md
+- docs/jennifer/NETWORK_REQUIREMENTS.md
+
+Working rules:
+
+- preserve upstream maintainability
+- minimize core modifications
+- prefer overlays, adapters, wrappers, and config-driven changes
+- do not perform broad renames
+- do not rename packages or modules unless absolutely necessary
+- keep changes small, reviewable, and documented
+- note any upgrade risks
+
+Current task:
+Implement only the first-stage branding overlay for Jennifer.
+
+Requirements:
+
+1. Inspect the repository and identify the minimal set of files needed to introduce a Jennifer branding overlay.
+2. Update only user-visible identity and branding-related configuration paths.
+3. Do not refactor the core architecture.
+4. Do not change internal package names unless required for a safe alias.
+5. Add or update documentation for what changed.
+6. If branding configuration does not exist yet, introduce the smallest safe configuration layer.
+7. Keep the patch compact and reviewable.
+
+Expected output:
+
+- brief findings summary
+- affected files list
+- implementation plan
+- code changes
+- config example
+- test steps
+- maintenance / upstream merge notes
+
+Before editing:
+
+- first explain the minimal safe approach
+- then implement
