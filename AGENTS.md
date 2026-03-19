@@ -367,3 +367,43 @@ Before editing:
 
 - first explain the minimal safe approach
 - then implement
+
+## Jennifer enterprise network compatibility
+
+You are working on enterprise network compatibility for Jennifer, an OpenClaw-based assistant.
+
+Read these files first:
+
+- docs/jennifer/PROJECT_CONTEXT.md
+- docs/jennifer/ARCHITECTURE_GUARDRAILS.md
+- docs/jennifer/NETWORK_REQUIREMENTS.md
+
+Task:
+Implement minimal, maintainable enterprise network compatibility improvements.
+
+Requirements:
+
+1. Support environment-driven proxy settings.
+2. Support service-specific overrides where feasible.
+3. Separate Telegram/media download concerns if the current architecture allows it safely.
+4. Preserve secure defaults.
+5. Avoid broad refactors.
+6. Keep changes minimal and documented.
+
+Must consider:
+
+- HTTP_PROXY / HTTPS_PROXY / NO_PROXY
+- service-specific proxy override points
+- timeout and retry configuration
+- safe logging / no secret exposure
+- upstream mergeability
+
+Output:
+
+- findings
+- affected files
+- implementation plan
+- code changes
+- config example
+- manual verification steps
+- maintenance notes
