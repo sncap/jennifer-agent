@@ -1,10 +1,7 @@
 # 🦞 Jennifer — Personal AI Assistant
 
 <p align="center">
-    <picture>
-        <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/openclaw-logo-text-dark.svg">
-        <img src="https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/openclaw-logo-text.svg" alt="Jennifer" width="500">
-    </picture>
+    <img src="docs/assets/jennifer/jenny.jpg" alt="Jennifer" width="360">
 </p>
 
 <p align="center">

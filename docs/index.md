@@ -9,16 +9,9 @@ title: "OpenClaw"
 
 <p align="center">
     <img
-        src="/assets/openclaw-logo-text-dark.png"
-        alt="OpenClaw"
-        width="500"
-        class="dark:hidden"
-    />
-    <img
-        src="/assets/openclaw-logo-text.png"
-        alt="OpenClaw"
-        width="500"
-        class="hidden dark:block"
+        src="/assets/jennifer/jenny.jpg"
+        alt="Jennifer"
+        width="360"
     />
 </p>
 
