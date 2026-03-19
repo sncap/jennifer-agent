@@ -979,7 +979,7 @@ If you are running macOS in a VM, see [macOS VM](/install/macos-vm).
 
 ### What is OpenClaw in one paragraph
 
-OpenClaw is a personal AI assistant you run on your own devices. It replies on the messaging surfaces you already use (WhatsApp, Telegram, Slack, Mattermost (plugin), Discord, Google Chat, Signal, iMessage, WebChat) and can also do voice + a live Canvas on supported platforms. The **Gateway** is the always-on control plane; the assistant is the product.
+Jennifer is the default end-user assistant persona you run through OpenClaw on your own devices. It replies on the messaging surfaces you already use (WhatsApp, Telegram, Slack, Mattermost (plugin), Discord, Google Chat, Signal, iMessage, WebChat) and can also do voice + a live Canvas on supported platforms. The **Gateway** is the always-on control plane; Jennifer is the assistant users meet.
 
 ### Value proposition
 
@@ -1486,8 +1486,21 @@ Set `cli.banner.taglineMode` in config:
 ```
 
 - `off`: hides tagline text but keeps the banner title/version line.
-- `default`: uses `All your chats, one OpenClaw.` every time.
+- `default`: uses `All your chats, one Jennifer.` every time.
 - `random`: rotating funny/seasonal taglines (default behavior).
+- If you want the assistant to show up as Jennifer across UI surfaces, set:
+
+```json5
+{
+  ui: {
+    assistant: {
+      name: "Jennifer",
+      avatar: "J",
+    },
+  },
+}
+```
+
 - If you want no banner at all, set env `OPENCLAW_HIDE_BANNER=1`.
 
 ### How do I enable web search and web fetch
