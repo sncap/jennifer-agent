@@ -36,16 +36,16 @@ Native companion apps for Windows are also planned; the Gateway is recommended v
 - Install guide: [Getting Started](/start/getting-started)
 - Gateway runbook: [Gateway](/gateway)
 - Gateway configuration: [Configuration](/gateway/configuration)
-- Service status: `openclaw gateway status`
+- Service status: `jennifer gateway status`
 
 ## Gateway service install (CLI)
 
 Use one of these (all supported):
 
-- Wizard (recommended): `openclaw onboard --install-daemon`
-- Direct: `openclaw gateway install`
-- Configure flow: `openclaw configure` → select **Gateway service**
-- Repair/migrate: `openclaw doctor` (offers to install or fix the service)
+- Wizard (recommended): `jennifer onboard --install-daemon`
+- Direct: `jennifer gateway install`
+- Configure flow: `jennifer configure` → select **Gateway service**
+- Repair/migrate: `jennifer doctor` (offers to install or fix the service)
 
 The service target depends on OS:
 

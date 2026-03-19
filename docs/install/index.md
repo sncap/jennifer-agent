@@ -76,7 +76,7 @@ For VPS/cloud hosts, avoid third-party "1-click" marketplace images when possibl
       <Tab title="npm">
         ```bash
         npm install -g openclaw@latest
-        openclaw onboard --install-daemon
+        jennifer onboard --install-daemon
         ```
 
         <Accordion title="sharp build errors?">
@@ -93,7 +93,7 @@ For VPS/cloud hosts, avoid third-party "1-click" marketplace images when possibl
         ```bash
         pnpm add -g openclaw@latest
         pnpm approve-builds -g        # approve openclaw, node-llama-cpp, sharp, etc.
-        openclaw onboard --install-daemon
+        jennifer onboard --install-daemon
         ```
 
         <Note>
@@ -130,7 +130,7 @@ For VPS/cloud hosts, avoid third-party "1-click" marketplace images when possibl
         ```
       </Step>
       <Step title="Link the CLI">
-        Make the `openclaw` command available globally:
+        Make the `jennifer` and `openclaw` commands available globally:
 
         ```bash
         pnpm link --global
@@ -140,7 +140,7 @@ For VPS/cloud hosts, avoid third-party "1-click" marketplace images when possibl
       </Step>
       <Step title="Run onboarding">
         ```bash
-        openclaw onboard --install-daemon
+        jennifer onboard --install-daemon
         ```
       </Step>
     </Steps>
@@ -175,9 +175,9 @@ For VPS/cloud hosts, avoid third-party "1-click" marketplace images when possibl
 Verify everything is working:
 
 ```bash
-openclaw doctor         # check for config issues
-openclaw status         # gateway status
-openclaw dashboard      # open the browser UI
+jennifer doctor         # check for config issues
+jennifer status         # gateway status
+jennifer dashboard      # open the browser UI
 ```
 
 If you need custom runtime paths, use:
@@ -188,7 +188,7 @@ If you need custom runtime paths, use:
 
 See [Environment vars](/help/environment) for precedence and full details.
 
-## Troubleshooting: `openclaw` not found
+## Troubleshooting: `jennifer` not found
 
 <Accordion title="PATH diagnosis and fix">
   Quick diagnosis:
