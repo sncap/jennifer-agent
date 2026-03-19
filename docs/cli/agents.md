@@ -99,7 +99,7 @@ openclaw agents set-identity --workspace ~/.openclaw/workspace --from-identity
 Override fields explicitly:
 
 ```bash
-openclaw agents set-identity --agent main --name "OpenClaw" --emoji "🦞" --avatar avatars/openclaw.png
+openclaw agents set-identity --agent main --name "Jennifer" --emoji "🦞" --avatar avatars/openclaw.png
 ```
 
 Config sample:
