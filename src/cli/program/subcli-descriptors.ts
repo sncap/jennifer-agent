@@ -125,7 +125,7 @@ export const SUB_CLI_DESCRIPTORS = [
   },
   {
     name: "update",
-    description: "Update OpenClaw and inspect update channel status",
+    description: "Update Jennifer and inspect update channel status",
     hasSubcommands: true,
   },
   {
