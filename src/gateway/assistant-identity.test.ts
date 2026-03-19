@@ -3,6 +3,13 @@ import type { OpenClawConfig } from "../config/config.js";
 import { DEFAULT_ASSISTANT_IDENTITY, resolveAssistantIdentity } from "./assistant-identity.js";
 
 describe("resolveAssistantIdentity avatar normalization", () => {
+  it("uses Jennifer as the default assistant identity", () => {
+    expect(resolveAssistantIdentity({ cfg: {}, workspaceDir: "" })).toMatchObject({
+      name: "Jennifer",
+      avatar: "J",
+    });
+  });
+
   it("drops sentence-like avatar placeholders", () => {
     const cfg: OpenClawConfig = {
       ui: {
