@@ -125,12 +125,12 @@ export function registerStatusHealthSessionsCommands(program: Command) {
       "after",
       () =>
         `\n${theme.heading("Examples:")}\n${formatHelpExamples([
-          ["openclaw sessions", "List all sessions."],
-          ["openclaw sessions --agent work", "List sessions for one agent."],
-          ["openclaw sessions --all-agents", "Aggregate sessions across agents."],
-          ["openclaw sessions --active 120", "Only last 2 hours."],
-          ["openclaw sessions --json", "Machine-readable output."],
-          ["openclaw sessions --store ./tmp/sessions.json", "Use a specific session store."],
+          ["jennifer sessions", "List all sessions."],
+          ["jennifer sessions --agent work", "List sessions for one agent."],
+          ["jennifer sessions --all-agents", "Aggregate sessions across agents."],
+          ["jennifer sessions --active 120", "Only last 2 hours."],
+          ["jennifer sessions --json", "Machine-readable output."],
+          ["jennifer sessions --store ./tmp/sessions.json", "Use a specific session store."],
         ])}\n\n${theme.muted(
           "Shows token usage per session when the agent reports it; set agents.defaults.contextTokens to cap the window and show %.",
         )}`,
