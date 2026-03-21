@@ -76,7 +76,7 @@ Recommended for most interactive installs on macOS/Linux/WSL.
   <Step title="Ensure Git">
     Installs Git if missing.
   </Step>
-  <Step title="Install OpenClaw">
+  <Step title="Install Jennifer">
     - `npm` method (default): global npm install
     - `git` method: clone/update repo, install deps with pnpm, build, then install wrapper at `~/.local/bin/openclaw`
   </Step>

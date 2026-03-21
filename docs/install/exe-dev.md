@@ -59,7 +59,7 @@ sudo apt-get update
 sudo apt-get install -y git curl jq ca-certificates openssl
 ```
 
-## 3) Install OpenClaw
+## 3) Install Jennifer
 
 Run the Jennifer install script:
 
