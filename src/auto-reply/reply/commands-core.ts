@@ -1,4 +1,5 @@
 import fs from "node:fs/promises";
+import path from "node:path";
 import { resetConfiguredBindingTargetInPlace } from "../../channels/plugins/binding-targets.js";
 import { logVerbose } from "../../globals.js";
 import { createInternalHookEvent, triggerInternalHook } from "../../hooks/internal-hooks.js";
@@ -48,6 +49,15 @@ import { routeReply } from "./route-reply.js";
 let HANDLERS: CommandHandler[] | null = null;
 
 export type ResetCommandAction = "new" | "reset";
+
+type RecoveryCommandKind = "session-reset" | "emergency-recovery";
+
+const RECOVERY_COMMAND_MAP = new Map<string, RecoveryCommandKind>([
+  ["jennifer_session_reset", "session-reset"],
+  ["jennifer_emergency_recovery", "emergency-recovery"],
+  ["제니 세션초기화", "session-reset"],
+  ["제니 비상복구", "emergency-recovery"],
+]);
 
 export async function emitResetCommandHooks(params: {
   action: ResetCommandAction;
@@ -172,6 +182,38 @@ function resolveSessionEntryForHookSessionKey(
   return undefined;
 }
 
+function resolveRecoveryCommandKind(raw: string | undefined): RecoveryCommandKind | null {
+  const normalized = raw?.trim().toLowerCase();
+  if (!normalized) {
+    return null;
+  }
+  return RECOVERY_COMMAND_MAP.get(normalized) ?? null;
+}
+
+async function appendRecoveryBreadcrumb(params: {
+  workspaceDir: string;
+  senderId?: string;
+  channel?: string;
+  sessionKey?: string;
+  kind: RecoveryCommandKind;
+}): Promise<void> {
+  try {
+    const dir = path.join(params.workspaceDir, "memory");
+    await fs.mkdir(dir, { recursive: true });
+    const file = path.join(dir, "recovery-events.jsonl");
+    const line = JSON.stringify({
+      ts: new Date().toISOString(),
+      kind: params.kind,
+      senderId: params.senderId ?? null,
+      channel: params.channel ?? null,
+      sessionKey: params.sessionKey ?? null,
+    });
+    await fs.appendFile(file, `${line}\n`, "utf8");
+  } catch (err) {
+    logVerbose(`recovery breadcrumb write failed: ${String(err)}`);
+  }
+}
+
 export async function handleCommands(params: HandleCommandsParams): Promise<CommandHandlerResult> {
   if (HANDLERS === null) {
     HANDLERS = [
@@ -206,6 +248,37 @@ export async function handleCommands(params: HandleCommandsParams): Promise<Comm
       handleAbortTrigger,
     ];
   }
+
+  const recoveryCommand = resolveRecoveryCommandKind(
+    params.command.rawBodyNormalized || params.command.commandBodyNormalized,
+  );
+  if (recoveryCommand) {
+    if (params.isGroup) {
+      return {
+        shouldContinue: false,
+        reply: { text: "⚠️ Recovery commands are only available in direct chats." },
+      };
+    }
+    if (!params.command.isAuthorizedSender) {
+      logVerbose(
+        `Ignoring recovery command from unauthorized sender: ${params.command.senderId || "<unknown>"}`,
+      );
+      return {
+        shouldContinue: false,
+        reply: { text: "⚠️ This recovery command requires authorization." },
+      };
+    }
+    await appendRecoveryBreadcrumb({
+      workspaceDir: params.workspaceDir,
+      senderId: params.command.senderId,
+      channel: params.command.channel,
+      sessionKey: params.sessionKey,
+      kind: recoveryCommand,
+    });
+    params.command.commandBodyNormalized = "/reset";
+    params.command.rawBodyNormalized = "/reset";
+  }
+
   const resetMatch = params.command.commandBodyNormalized.match(/^\/(new|reset)(?:\s|$)/);
   const resetRequested = Boolean(resetMatch);
   if (resetRequested && !params.command.isAuthorizedSender) {

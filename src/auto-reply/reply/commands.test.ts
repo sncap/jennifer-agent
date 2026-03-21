@@ -1552,6 +1552,53 @@ describe("handleCommands hooks", () => {
   });
 });
 
+describe("handleCommands emergency recovery", () => {
+  it("maps JENNIFER_SESSION_RESET to reset hooks for authorized direct chats", async () => {
+    const spy = vi.spyOn(internalHooks, "triggerInternalHook").mockResolvedValue();
+    const params = buildParams(
+      "JENNIFER_SESSION_RESET",
+      {
+        commands: { text: true },
+        channels: { telegram: { allowFrom: ["*"] } },
+      } as OpenClawConfig,
+      {
+        Provider: "telegram",
+        Surface: "telegram",
+        ChatType: "direct",
+        SenderId: "123",
+        From: "telegram:123",
+        To: "telegram:bot",
+      },
+    );
+    params.command.isAuthorizedSender = true;
+    params.command.senderIsOwner = true;
+    const result = await handleCommands(params);
+    expect(result.shouldContinue).toBe(false);
+    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ type: "command", action: "reset" }));
+    spy.mockRestore();
+  });
+
+  it("blocks recovery commands in groups", async () => {
+    const params = buildParams(
+      "JENNIFER_EMERGENCY_RECOVERY",
+      {
+        commands: { text: true },
+        channels: { telegram: { allowFrom: ["*"] } },
+      } as OpenClawConfig,
+      {
+        Provider: "telegram",
+        Surface: "telegram",
+        ChatType: "group",
+        SenderId: "123",
+      },
+    );
+    params.isGroup = true;
+    const result = await handleCommands(params);
+    expect(result.shouldContinue).toBe(false);
+    expect(result.reply?.text).toContain("direct chats");
+  });
+});
+
 describe("handleCommands context", () => {
   it("returns expected details for /context commands", async () => {
     const cfg = {
