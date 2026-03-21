@@ -1,11 +1,11 @@
 ---
-summary: "OpenClaw is a multi-channel gateway for AI agents that runs on any OS."
+summary: "Jennifer is the end-user assistant persona running on the OpenClaw gateway across any OS."
 read_when:
-  - Introducing OpenClaw to newcomers
-title: "OpenClaw"
+  - Introducing Jennifer and OpenClaw to newcomers
+title: "Jennifer"
 ---
 
-# OpenClaw 🦞
+# Jennifer 🦞
 
 <p align="center">
     <img
@@ -24,7 +24,7 @@ title: "OpenClaw"
 
 <Columns>
   <Card title="Get Started" href="/start/getting-started" icon="rocket">
-    Install OpenClaw and bring up the Gateway in minutes.
+    Install Jennifer and bring up the OpenClaw Gateway in minutes.
   </Card>
   <Card title="Run Onboarding" href="/start/wizard" icon="sparkles">
     Guided setup with `openclaw onboard` and pairing flows.
@@ -34,9 +34,9 @@ title: "OpenClaw"
   </Card>
 </Columns>
 
-## What is OpenClaw?
+## What is Jennifer?
 
-OpenClaw is a **self-hosted gateway** that connects your favorite chat apps — WhatsApp, Telegram, Discord, iMessage, and more — to AI coding agents like Pi. You run a single Gateway process on your own machine (or a server), and it becomes the bridge between your messaging apps and an always-available AI assistant.
+Jennifer is the **end-user assistant persona** you interact with, powered by the OpenClaw **self-hosted gateway**. OpenClaw connects your favorite chat apps — WhatsApp, Telegram, Discord, iMessage, and more — to AI agents like Pi. You run a single Gateway process on your own machine (or a server), and Jennifer becomes the assistant you meet across those surfaces.
 
 **Who is it for?** Developers and power users who want a personal AI assistant they can message from anywhere — without giving up control of their data or relying on a hosted service.
 

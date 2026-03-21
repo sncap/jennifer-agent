@@ -1,5 +1,5 @@
 ---
-summary: "Install OpenClaw — installer script, npm/pnpm, from source, Docker, and more"
+summary: "Install Jennifer (powered by OpenClaw) — installer script, npm/pnpm, from source, Docker, and more"
 read_when:
   - You need an install method other than the Getting Started quickstart
   - You want to deploy to a cloud platform
@@ -24,7 +24,7 @@ On Windows, we strongly recommend running OpenClaw under [WSL2](https://learn.mi
 ## Install methods
 
 <Tip>
-The **installer script** is the recommended way to install OpenClaw. It handles Node detection, installation, and onboarding in one step.
+The **installer script** is the recommended way to install Jennifer. It handles Node detection, OpenClaw installation, and onboarding in one step.
 </Tip>
 
 <Warning>

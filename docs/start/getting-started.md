@@ -1,8 +1,8 @@
 ---
-summary: "Get OpenClaw installed and run your first chat in minutes."
+summary: "Get Jennifer installed and run your first chat in minutes."
 read_when:
   - First time setup from zero
-  - You want the fastest path to a working chat
+  - You want the fastest path to a working Jennifer chat
 title: "Getting Started"
 ---
 
@@ -28,7 +28,7 @@ Check your Node version with `node --version` if you are unsure.
 ## Quick setup (CLI)
 
 <Steps>
-  <Step title="Install OpenClaw (recommended)">
+  <Step title="Install Jennifer (recommended)">
     <Tabs>
       <Tab title="macOS/Linux">
         ```bash
