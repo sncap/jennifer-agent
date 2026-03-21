@@ -35,4 +35,13 @@ describe("summarizeProxyEnv", () => {
     expect(result.detected).toBe(true);
     expect(result.type).toBe("socks");
   });
+
+  it("detects mixed proxy configuration", () => {
+    const result = summarizeProxyEnv({
+      HTTP_PROXY: "http://proxy.company.local:8080",
+      ALL_PROXY: "socks5://127.0.0.1:1080",
+    });
+    expect(result.detected).toBe(true);
+    expect(result.type).toBe("mixed");
+  });
 });

@@ -1,5 +1,6 @@
 import dns from "node:dns/promises";
 import { readBestEffortConfig } from "../config/config.js";
+import { detectRespawnSupervisor } from "../infra/supervisor-markers.js";
 import type { RuntimeEnv } from "../runtime.js";
 import { note } from "../terminal/note.js";
 
@@ -264,12 +265,35 @@ async function checkTelegramBotApi(): Promise<ReachabilityCheck> {
   }
 }
 
+type Recommendation = {
+  confidence: "high" | "medium" | "low";
+  lines: string[];
+};
+
+function buildServiceEnvironmentWarnings(proxy: ProxySummary): string[] {
+  if (!proxy.detected) {
+    return [];
+  }
+  const supervisor = detectRespawnSupervisor(process.env, process.platform);
+  const lines = ["Proxy settings were detected in the current shell environment."];
+  if (supervisor) {
+    lines.push(
+      `The current process appears to be under ${supervisor}; verify the managed service inherits the same proxy variables.`,
+    );
+  } else {
+    lines.push(
+      "If Jennifer Gateway runs as a background service, verify launchd/systemd/Scheduled Tasks inherit the same proxy variables.",
+    );
+  }
+  return lines;
+}
+
 function buildRecommendation(params: {
   proxy: ProxySummary;
   installChecks: ReachabilityCheck[];
   providerChecks: ReachabilityCheck[];
   telegram: ReachabilityCheck;
-}): string[] {
+}): Recommendation {
   const installOk = params.installChecks.every((check) => check.status === "ok");
   const providerBlocked = params.providerChecks.some(
     (check) => !["ok", "auth_invalid"].includes(check.status),
@@ -277,36 +301,54 @@ function buildRecommendation(params: {
   const telegramOk = params.telegram.status === "ok";
 
   if (!installOk) {
-    return [
-      "Jennifer install path is blocked or incomplete from this host.",
-      "Recommendation: fix proxy/DNS/TLS issues first, then rerun install preflight.",
-    ];
+    return {
+      confidence: "high",
+      lines: [
+        "Jennifer install path is blocked or incomplete from this host.",
+        "Recommendation: fix proxy/DNS/TLS issues first, then rerun install preflight.",
+      ],
+    };
   }
   if (providerBlocked) {
-    return [
-      "Jennifer core install is likely to succeed.",
-      "One or more configured model providers look blocked or unreliable from this host.",
-      "Recommendation: fix provider/proxy reachability before relying on hosted models.",
-    ];
+    return {
+      confidence: "high",
+      lines: [
+        "Jennifer core install is likely to succeed.",
+        "One or more configured model providers look blocked or unreliable from this host.",
+        "Recommendation: fix provider/proxy reachability before relying on hosted models.",
+      ],
+    };
   }
   if (telegramOk && params.proxy.detected) {
-    return ["Jennifer core install is likely to succeed.", "Recommended mode: direct via proxy."];
+    return {
+      confidence: "medium",
+      lines: ["Jennifer core install is likely to succeed.", "Recommended mode: direct via proxy."],
+    };
   }
   if (telegramOk) {
-    return ["Jennifer core install is likely to succeed.", "Recommended mode: direct mode."];
+    return {
+      confidence: "medium",
+      lines: ["Jennifer core install is likely to succeed.", "Recommended mode: direct mode."],
+    };
   }
   if (params.telegram.status === "auth_invalid") {
-    return [
-      "Jennifer core install is likely to succeed.",
-      "Telegram is reachable, but the configured bot token looks invalid.",
-      "Recommendation: fix Telegram bot auth locally before switching topology.",
-    ];
+    return {
+      confidence: "high",
+      lines: [
+        "Jennifer core install is likely to succeed.",
+        "Telegram is reachable, but the configured bot token looks invalid.",
+        "Recommendation: fix Telegram bot auth locally before switching topology.",
+      ],
+    };
   }
-  return [
-    "Jennifer core install is likely to succeed.",
-    "Telegram looks blocked or unreliable from this host.",
-    "Recommended mode: local install + remote Telegram gateway.",
-  ];
+  return {
+    confidence: "medium",
+    lines: [
+      "Jennifer core install is likely to succeed.",
+      "Telegram looks blocked or unreliable from this host.",
+      "Recommended mode: local install + remote Telegram gateway.",
+    ],
+  };
 }
 
 export async function runInstallPreflight(runtime: RuntimeEnv): Promise<void> {
@@ -353,6 +395,18 @@ export async function runInstallPreflight(runtime: RuntimeEnv): Promise<void> {
     providerChecks,
     telegram,
   });
-  note(recommendation.map((line) => `- ${line}`).join("\n"), "Recommendation");
+  note(
+    [
+      `- Confidence: ${recommendation.confidence}`,
+      ...recommendation.lines.map((line) => `- ${line}`),
+    ].join("\n"),
+    "Recommendation",
+  );
+
+  const serviceWarnings = buildServiceEnvironmentWarnings(proxy);
+  if (serviceWarnings.length > 0) {
+    note(serviceWarnings.map((line) => `- ${line}`).join("\n"), "Service environment");
+  }
+
   runtime.log("Install preflight complete.");
 }
