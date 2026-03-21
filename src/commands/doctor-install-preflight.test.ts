@@ -27,4 +27,12 @@ describe("summarizeProxyEnv", () => {
     expect(result.type).toBe("malformed");
     expect(result.warnings.length).toBeGreaterThan(0);
   });
+
+  it("detects socks proxy values", () => {
+    const result = summarizeProxyEnv({
+      ALL_PROXY: "socks5://127.0.0.1:1080",
+    });
+    expect(result.detected).toBe(true);
+    expect(result.type).toBe("socks");
+  });
 });
