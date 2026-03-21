@@ -315,9 +315,9 @@ Other useful CLI checks: `openclaw status --all`, `openclaw logs --follow`,
 Quick debug loop: [First 60 seconds if something is broken](#first-60-seconds-if-something-is-broken).
 Install docs: [Install](/install), [Installer flags](/install/installer), [Updating](/install/updating).
 
-### Recommended way to install and set up OpenClaw
+### Recommended way to install and set up Jennifer
 
-The repo recommends running from source and using onboarding:
+The recommended setup path is to install Jennifer and run onboarding:
 
 ```bash
 curl -fsSL https://openclaw.ai/install.sh | bash
@@ -625,7 +625,7 @@ curl -fsSL https://openclaw.ai/install.sh | bash -s -- --install-method git
 
 More detail: [Install](/install) and [Installer flags](/install/installer).
 
-### How do I install OpenClaw on Linux
+### How do I install Jennifer on Linux
 
 Short answer: follow the Linux guide, then run onboarding.
 
@@ -633,7 +633,7 @@ Short answer: follow the Linux guide, then run onboarding.
 - Full walkthrough: [Getting Started](/start/getting-started).
 - Installer + updates: [Install & updates](/install/updating).
 
-### How do I install OpenClaw on a VPS
+### How do I install Jennifer on a VPS
 
 Any Linux VPS works. Install on the server, then use SSH/Tailscale to reach the Gateway.
 
@@ -975,9 +975,9 @@ If you are on Windows, **WSL2 is the easiest VM style setup** and has the best t
 compatibility. See [Windows](/platforms/windows), [VPS hosting](/vps).
 If you are running macOS in a VM, see [macOS VM](/install/macos-vm).
 
-## What is OpenClaw?
+## What is Jennifer?
 
-### What is OpenClaw in one paragraph
+### What is Jennifer in one paragraph
 
 Jennifer is the default end-user assistant persona you run through OpenClaw on your own devices. It replies on the messaging surfaces you already use (WhatsApp, Telegram, Slack, Mattermost (plugin), Discord, Google Chat, Signal, iMessage, WebChat) and can also do voice + a live Canvas on supported platforms. The **Gateway** is the always-on control plane; Jennifer is the assistant users meet.
 
@@ -1016,7 +1016,7 @@ Good first projects:
 It can handle large tasks, but it works best when you split them into phases and
 use sub agents for parallel work.
 
-### What are the top five everyday use cases for OpenClaw
+### What are the top five everyday use cases for Jennifer
 
 Everyday wins usually look like:
 
@@ -1026,7 +1026,7 @@ Everyday wins usually look like:
 - **Browser automation:** filling forms, collecting data, and repeating web tasks.
 - **Cross device coordination:** send a task from your phone, let the Gateway run it on a server, and get the result back in chat.
 
-### Can OpenClaw help with lead gen outreach ads and blogs for a SaaS
+### Can Jennifer help with lead gen outreach ads and blogs for a SaaS
 
 Yes for **research, qualification, and drafting**. It can scan sites, build shortlists,
 summarize prospects, and write outreach or ad copy drafts.
@@ -1039,8 +1039,8 @@ Docs: [Security](/gateway/security).
 
 ### What are the advantages vs Claude Code for web development
 
-OpenClaw is a **personal assistant** and coordination layer, not an IDE replacement. Use
-Claude Code or Codex for the fastest direct coding loop inside a repo. Use OpenClaw when you
+Jennifer, powered by OpenClaw, is a **personal assistant** and coordination layer, not an IDE replacement. Use
+Claude Code or Codex for the fastest direct coding loop inside a repo. Use Jennifer when you
 want durable memory, cross-device access, and tool orchestration.
 
 Advantages:
@@ -1141,7 +1141,7 @@ npm i -g clawhub
 pnpm add -g clawhub
 ```
 
-### Can OpenClaw run tasks on a schedule or continuously in the background
+### Can Jennifer run tasks on a schedule or continuously in the background
 
 Yes. Use the Gateway scheduler:
 
