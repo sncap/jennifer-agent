@@ -223,6 +223,8 @@ export async function finalizeSetupWizard(
     }
   }
 
+  let healthCheckOk = opts.skipHealth;
+
   if (!opts.skipHealth) {
     const probeLinks = resolveControlUiLinks({
       bind: nextConfig.gateway?.bind ?? "loopback",
@@ -238,6 +240,7 @@ export async function finalizeSetupWizard(
     });
     try {
       await healthCommand({ json: false, timeoutMs: 10_000 }, runtime);
+      healthCheckOk = true;
     } catch (err) {
       runtime.error(formatHealthCheckFailure(err));
       await prompter.note(
@@ -567,13 +570,21 @@ export async function finalizeSetupWizard(
     "What now",
   );
 
-  await prompter.outro(
-    controlUiOpened
+  const deferredSetup = !healthCheckOk || !gatewayProbe.ok;
+  const outroMessage = deferredSetup
+    ? [
+        "Jennifer core setup is complete, but some connectivity steps still need attention.",
+        gatewayProbe.ok
+          ? "Gateway looks partially healthy. Review the notes above for deferred setup items."
+          : "Gateway/UI connectivity is not fully ready yet. Review the notes above and continue with the dashboard or doctor checks.",
+      ].join(" ")
+    : controlUiOpened
       ? "Onboarding complete. Dashboard opened; keep that tab to control Jennifer."
       : seededInBackground
         ? "Onboarding complete. Web UI seeded in the background; open it anytime with the dashboard link above."
-        : "Onboarding complete. Use the dashboard link above to control Jennifer.",
-  );
+        : "Onboarding complete. Use the dashboard link above to control Jennifer.";
+
+  await prompter.outro(outroMessage);
 
   return { launchedTui };
 }
