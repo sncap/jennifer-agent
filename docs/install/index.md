@@ -223,6 +223,6 @@ Then open a new terminal (or `rehash` in zsh / `hash -r` in bash).
     Move to a new machine.
   </Card>
   <Card title="Uninstall" href="/install/uninstall" icon="trash-2">
-    Remove OpenClaw completely.
+    Remove Jennifer completely.
   </Card>
 </CardGroup>

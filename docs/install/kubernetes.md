@@ -1,8 +1,8 @@
 ---
 summary: "Deploy OpenClaw Gateway to a Kubernetes cluster with Kustomize"
 read_when:
-  - You want to run OpenClaw on a Kubernetes cluster
-  - You want to test OpenClaw in a Kubernetes environment
+  - You want to run Jennifer on a Kubernetes cluster
+  - You want to test Jennifer in a Kubernetes environment
 title: "Kubernetes"
 ---
 

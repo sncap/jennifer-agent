@@ -89,7 +89,7 @@ The Gateway is the single source of truth for sessions, routing, and channel con
 ## Quick start
 
 <Steps>
-  <Step title="Install OpenClaw">
+  <Step title="Install Jennifer">
     ```bash
     npm install -g openclaw@latest
     ```
