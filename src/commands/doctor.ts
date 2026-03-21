@@ -39,6 +39,7 @@ import {
   maybeRepairGatewayServiceConfig,
   maybeScanExtraGatewayServices,
 } from "./doctor-gateway-services.js";
+import { runInstallPreflight } from "./doctor-install-preflight.js";
 import { noteSourceInstallIssues } from "./doctor-install.js";
 import { noteMemorySearchHealth } from "./doctor-memory-search.js";
 import {
@@ -78,6 +79,12 @@ export async function doctorCommand(
   const prompter = createDoctorPrompter({ runtime, options });
   printWizardHeader(runtime);
   intro("Jennifer doctor");
+
+  if (options.installPreflight === true) {
+    await runInstallPreflight(runtime);
+    outro("Install preflight complete");
+    return;
+  }
 
   const root = await resolveOpenClawPackageRoot({
     moduleUrl: import.meta.url,
