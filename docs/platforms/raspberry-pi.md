@@ -107,7 +107,7 @@ echo 'vm.swappiness=10' | sudo tee -a /etc/sysctl.conf
 sudo sysctl -p
 ```
 
-## 6) Install OpenClaw
+## 6) Install Jennifer
 
 ### Option A: Standard Install (Recommended)
 

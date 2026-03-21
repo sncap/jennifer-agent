@@ -96,7 +96,7 @@ tailscale status
 
 **From now on, connect via Tailscale:** `ssh ubuntu@openclaw` (or use the Tailscale IP).
 
-## 5) Install OpenClaw
+## 5) Install Jennifer
 
 ```bash
 curl -fsSL https://openclaw.ai/install.sh | bash

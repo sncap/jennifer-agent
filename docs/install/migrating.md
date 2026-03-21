@@ -87,7 +87,7 @@ tar -czf openclaw-workspace.tgz .openclaw/workspace
 
 If you have multiple profiles/state dirs (e.g. `~/.openclaw-main`, `~/.openclaw-work`), archive each.
 
-### Step 1 - Install OpenClaw on the new machine
+### Step 1 - Install Jennifer on the new machine
 
 On the **new** machine, install the CLI (and Node if needed):
 

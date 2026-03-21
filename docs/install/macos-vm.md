@@ -48,7 +48,7 @@ Once you have SSH access to a macOS VM, continue at step 6 below.
 2. `lume create openclaw --os macos --ipsw latest`
 3. Complete Setup Assistant, enable Remote Login (SSH)
 4. `lume run openclaw --no-display`
-5. SSH in, install OpenClaw, configure channels
+5. SSH in, install Jennifer, configure channels
 6. Done
 
 ---
@@ -132,7 +132,7 @@ Replace `youruser` with the account you created, and the IP with your VM's IP.
 
 ---
 
-## 6) Install OpenClaw
+## 6) Install Jennifer
 
 Inside the VM:
 

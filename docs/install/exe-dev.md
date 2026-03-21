@@ -27,7 +27,7 @@ This page assumes exe.dev's default **exeuntu** image. If you picked a different
 
 ## Automated Install with Shelley
 
-Shelley, [exe.dev](https://exe.dev)'s agent, can install OpenClaw instantly with our
+Shelley, [exe.dev](https://exe.dev)'s agent, can install Jennifer instantly with our
 prompt. The prompt used is as below:
 
 ```
@@ -61,7 +61,7 @@ sudo apt-get install -y git curl jq ca-certificates openssl
 
 ## 3) Install OpenClaw
 
-Run the OpenClaw install script:
+Run the Jennifer install script:
 
 ```bash
 curl -fsSL https://openclaw.ai/install.sh | bash
