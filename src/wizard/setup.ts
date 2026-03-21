@@ -1,4 +1,5 @@
 import { formatCliCommand } from "../cli/command-format.js";
+import { runInstallPreflight } from "../commands/doctor-install-preflight.js";
 import type {
   GatewayAuthChoice,
   OnboardMode,
@@ -82,6 +83,33 @@ export async function runSetupWizard(
   const onboardHelpers = await import("../commands/onboard-helpers.js");
   onboardHelpers.printWizardHeader(runtime);
   await prompter.intro("Jennifer setup");
+
+  if (!opts.nonInteractive && opts.mode !== "remote") {
+    await prompter.note(
+      [
+        "Before continuing, Jennifer can run a lightweight install/network preflight.",
+        "This is especially useful on corporate, proxy, VPN, or firewall-restricted networks.",
+        "Telegram being blocked will not be treated as total install failure.",
+      ].join("\n"),
+      "Install preflight",
+    );
+    const shouldRunPreflight = await prompter.confirm({
+      message: "Run install preflight now?",
+      initialValue: true,
+    });
+    if (shouldRunPreflight) {
+      await runInstallPreflight(runtime);
+      await prompter.note(
+        [
+          "Preflight finished.",
+          "You can continue setup even if Telegram looks blocked from this host.",
+          "If install/provider checks look good, Jennifer core setup can still succeed.",
+        ].join("\n"),
+        "Install preflight",
+      );
+    }
+  }
+
   await requireRiskAcknowledgement({ opts, prompter });
 
   const snapshot = await readConfigFileSnapshot();
