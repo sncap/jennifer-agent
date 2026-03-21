@@ -98,7 +98,7 @@ export async function enforceMatrixDirectMessageAccess(params: {
       upsertPairingRequest: params.upsertPairingRequest,
       buildReplyText: ({ code }) =>
         [
-          "OpenClaw: access not configured.",
+          "Jennifer: access not configured.",
           "",
           `Pairing code: ${code}`,
           "",

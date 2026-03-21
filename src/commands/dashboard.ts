@@ -110,7 +110,7 @@ export async function dashboardCommand(
   }
 
   if (opened) {
-    runtime.log("Opened in your browser. Keep that tab to control OpenClaw.");
+    runtime.log("Opened in your browser. Keep that tab to control Jennifer.");
   } else if (hint) {
     runtime.log(hint);
   }

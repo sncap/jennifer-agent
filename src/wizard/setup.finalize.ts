@@ -471,8 +471,8 @@ export async function finalizeSetupWizard(
       [
         `Dashboard link (with token): ${authedUrl}`,
         controlUiOpened
-          ? "Opened in your browser. Keep that tab to control OpenClaw."
-          : "Copy/paste this URL in a browser on this machine to control OpenClaw.",
+          ? "Opened in your browser. Keep that tab to control Jennifer."
+          : "Copy/paste this URL in a browser on this machine to control Jennifer.",
         controlUiOpenHint,
       ]
         .filter(Boolean)

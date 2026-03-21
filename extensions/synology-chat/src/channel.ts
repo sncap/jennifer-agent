@@ -114,7 +114,7 @@ export function createSynologyChatPlugin() {
         if (!account.incomingUrl) return;
         await sendMessage(
           account.incomingUrl,
-          "OpenClaw: your access has been approved.",
+          "Jennifer: your access has been approved.",
           id,
           account.allowInsecureSsl,
         );
