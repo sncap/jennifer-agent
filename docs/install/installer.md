@@ -185,7 +185,7 @@ Designed for environments where you want everything under a local prefix (defaul
   <Step title="Ensure Git">
     If Git is missing, attempts install via apt/dnf/yum on Linux or Homebrew on macOS.
   </Step>
-  <Step title="Install OpenClaw under prefix">
+  <Step title="Install Jennifer under prefix">
     Installs with npm using `--prefix <prefix>`, then writes wrapper to `<prefix>/bin/openclaw`.
   </Step>
 </Steps>
@@ -259,7 +259,7 @@ Designed for environments where you want everything under a local prefix (defaul
   <Step title="Ensure Node.js 24 by default">
     If missing, attempts install via winget, then Chocolatey, then Scoop. Node 22 LTS, currently `22.16+`, remains supported for compatibility.
   </Step>
-  <Step title="Install OpenClaw">
+  <Step title="Install Jennifer">
     - `npm` method (default): global npm install using selected `-Tag`
     - `git` method: clone/update repo, install/build with pnpm, and install wrapper at `%USERPROFILE%\.local\bin\openclaw.cmd`
   </Step>

@@ -60,7 +60,7 @@ Use a clean base image (Ubuntu 24.04 LTS). Avoid third-party Marketplace 1-click
 ssh root@YOUR_DROPLET_IP
 ```
 
-## 3) Install OpenClaw
+## 3) Install Jennifer
 
 ```bash
 # Update system
@@ -70,7 +70,7 @@ apt update && apt upgrade -y
 curl -fsSL https://deb.nodesource.com/setup_24.x | bash -
 apt install -y nodejs
 
-# Install OpenClaw
+# Install Jennifer
 curl -fsSL https://openclaw.ai/install.sh | bash
 
 # Verify

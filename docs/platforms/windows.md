@@ -220,7 +220,7 @@ Re-open Ubuntu, then verify:
 systemctl --user status
 ```
 
-### 3) Install OpenClaw (inside WSL)
+### 3) Install Jennifer (inside WSL)
 
 Follow the Linux Getting Started flow inside WSL:
 

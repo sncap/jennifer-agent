@@ -28,7 +28,7 @@ The **installer script** is the recommended way to install Jennifer. It handles 
 </Tip>
 
 <Warning>
-For VPS/cloud hosts, avoid third-party "1-click" marketplace images when possible. Prefer a clean base OS image (for example Ubuntu LTS), then install OpenClaw yourself with the installer script.
+For VPS/cloud hosts, avoid third-party "1-click" marketplace images when possible. Prefer a clean base OS image (for example Ubuntu LTS), then install Jennifer yourself with the installer script.
 </Warning>
 
 <AccordionGroup>
