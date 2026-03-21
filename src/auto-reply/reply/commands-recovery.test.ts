@@ -71,8 +71,8 @@ afterEach(() => {
 });
 
 describe("recovery command aliases", () => {
-  it("maps JENNIFER_SESSION_RESET to reset hooks for authorized direct chats", async () => {
-    const params = buildParams("JENNIFER_SESSION_RESET", "direct");
+  it("maps 인크래더블제니 세션초기화 to reset hooks for authorized direct chats", async () => {
+    const params = buildParams("인크래더블제니 세션초기화", "direct");
     const result = await handleCommands(params);
     expect(result.shouldContinue).toBe(true);
     expect(params.command.commandBodyNormalized).toBe("/reset");
@@ -81,8 +81,8 @@ describe("recovery command aliases", () => {
     );
   });
 
-  it("blocks recovery commands in groups", async () => {
-    const result = await handleCommands(buildParams("JENNIFER_EMERGENCY_RECOVERY", "group"));
+  it("blocks 인크래더블제니 비상복구 in groups", async () => {
+    const result = await handleCommands(buildParams("인크래더블제니 비상복구", "group"));
     expect(result.shouldContinue).toBe(false);
     expect(result.reply?.text).toContain("direct chats");
     expect(triggerInternalHookMock).not.toHaveBeenCalled();

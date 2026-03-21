@@ -53,10 +53,10 @@ export type ResetCommandAction = "new" | "reset";
 type RecoveryCommandKind = "session-reset" | "emergency-recovery";
 
 const RECOVERY_COMMAND_MAP = new Map<string, RecoveryCommandKind>([
+  ["인크래더블제니 세션초기화", "session-reset"],
+  ["인크래더블제니 비상복구", "emergency-recovery"],
   ["jennifer_session_reset", "session-reset"],
   ["jennifer_emergency_recovery", "emergency-recovery"],
-  ["제니 세션초기화", "session-reset"],
-  ["제니 비상복구", "emergency-recovery"],
 ]);
 
 export async function emitResetCommandHooks(params: {
