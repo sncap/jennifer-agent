@@ -81,6 +81,16 @@ describe("recovery command aliases", () => {
     );
   });
 
+  it("maps 인크래더블제니 비상복구 to reset hooks for authorized direct chats", async () => {
+    const params = buildParams("인크래더블제니 비상복구", "direct");
+    const result = await handleCommands(params);
+    expect(result.shouldContinue).toBe(true);
+    expect(params.command.commandBodyNormalized).toBe("/reset");
+    expect(triggerInternalHookMock).toHaveBeenCalledWith(
+      expect.objectContaining({ type: "command", action: "reset" }),
+    );
+  });
+
   it("blocks 인크래더블제니 비상복구 in groups", async () => {
     const result = await handleCommands(buildParams("인크래더블제니 비상복구", "group"));
     expect(result.shouldContinue).toBe(false);
