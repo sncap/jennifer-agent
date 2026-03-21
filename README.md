@@ -108,7 +108,7 @@ Note: `pnpm openclaw ...` runs TypeScript directly (via `tsx`). `pnpm build` pro
 
 ## Security defaults (DM access)
 
-OpenClaw connects to real messaging surfaces. Treat inbound DMs as **untrusted input**.
+Jennifer connects to real messaging surfaces through OpenClaw. Treat inbound DMs as **untrusted input**.
 
 Full security guide: [Security](https://docs.openclaw.ai/gateway/security)
 
