@@ -163,6 +163,9 @@ Use explicit, uncommon phrases to reduce accidental activation.
 - `제니 정리해`
 - `제니 세션초기화`
 - `제니 비상복구`
+- `인크래더블제니 정리`
+- `인크래더블제니 리셋`
+- `인크래더블제니 초기화`
 
 ### Why both?
 

@@ -1,11 +1,15 @@
 # Jennifer Project Context
 
 ## 1. Overview
-Jennifer is an enterprise-grade assistant built as a **branding overlay on top of OpenClaw**.
+
+Jennifer started as a rebranding layer on top of OpenClaw, and is now evolving into a **private, owner-operated, self-improving AI agent system**.
 
 This project aims to:
-- preserve OpenClaw core architecture
-- introduce a "Jennifer" identity for enterprise use
+
+- preserve OpenClaw core compatibility where practical
+- establish Jennifer as an independent product identity and operator experience
+- support multi-node operations (Jennifer orchestrator + specialist child nodes)
+- support safe self-improvement loops with explicit owner approval
 - enhance network compatibility for restricted environments
 - enable safe integration with external coding agents (e.g., Codex)
 
@@ -14,21 +18,30 @@ This project aims to:
 ## 2. Project Goals
 
 ### Primary Goals
+
 - Introduce "Jennifer" as the assistant identity
-- Maintain upstream compatibility with OpenClaw
+- Convert from rebranded fork behavior to owner-centric Jennifer product behavior
+- Support multi-node orchestration (top-level Jennifer + specialist child nodes)
+- Build a memory operating model (`jennifer-memory` private repo)
+- Add safe self-improvement workflows (analyze → propose → approve → apply)
+- Maintain upstream compatibility with OpenClaw where it does not conflict with Jennifer UX
 - Support enterprise network environments (proxy/firewall)
 - Provide safe execution boundaries for automation (Codex, scripts)
 
 ### Secondary Goals
+
 - Improve observability for network failures
 - Enable extensible adapter-based architecture
 - Provide clear configuration for enterprise deployment
+- Analyze owner conversation/work patterns and continuously refine workflows
+- Keep local dashboard workflows first-class (not Telegram-centric)
 
 ---
 
 ## 3. Scope
 
 ### In Scope (Phase 1)
+
 - Branding overlay (Jennifer identity)
 - Telegram assistant identity update
 - Greeting/help message override
@@ -37,10 +50,22 @@ This project aims to:
 - Minimal safe integration point for external tools (Codex wrapper)
 
 ### Out of Scope
-- Full repository rename
-- Package/module renaming
-- Breaking config schema changes
-- Replacing OpenClaw core architecture
+
+- Full repository rename in a single step
+- Package/module renaming that breaks compatibility without migration plan
+- Unreviewed autonomous code deployment
+- Replacing OpenClaw core architecture in one pass
+
+---
+
+## 3.1 Current Transition Target
+
+Jennifer is moving from "rebrand" to "operating system for owner workflows":
+
+- `Core` (stable): identity, memory policy, approvals, recovery, security boundaries
+- `Extensions` (fast iteration): domain nodes (finance, AI/code, ops/research), automations, strategy modules
+
+The intent is to keep core reliable while allowing rapid growth in extensions.
 
 ---
 
@@ -61,6 +86,7 @@ This project aims to:
 ## 5. Branding Strategy
 
 Jennifer branding should be applied to:
+
 - Assistant name
 - Greeting messages
 - Help responses
@@ -68,6 +94,7 @@ Jennifer branding should be applied to:
 - User-visible UI elements (where safe)
 
 OpenClaw references may remain in:
+
 - Internal module names
 - Code structure
 - Config keys (unless safe to alias)
@@ -89,6 +116,7 @@ Jennifer must work under:
 ## 7. Expected Deliverables
 
 Each feature must include:
+
 - Minimal code change
 - Config example
 - Documentation update
@@ -121,8 +149,18 @@ Before implementation:
 ## 10. Definition of Done
 
 A task is complete when:
+
 - Behavior works in enterprise network
 - No unintended core modification
 - Config is documented
 - Risks are explained
 
+---
+
+## 11. Working Docs
+
+- `docs/jennifer/ARCHITECTURE_GUARDRAILS.md`
+- `docs/jennifer/JENNIFER_MEMORY_OPERATING_MODEL.md`
+- `docs/jennifer/JENNIFER_DASHBOARD_STRATEGY.md`
+- `docs/jennifer/JENNIFER_SELF_EVOLUTION_LOOP.md`
+- `docs/jennifer/EMERGENCY_SESSION_RECOVERY.md`

@@ -15,7 +15,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="MIT License"></a>
 </p>
 
-**Jennifer** is the end-user assistant persona shipped by OpenClaw. You still install and run the `openclaw` CLI, but the assistant now introduces itself as _Jennifer_ on user-facing surfaces.
+**Jennifer** is the end-user assistant persona shipped on top of OpenClaw internals. Use the `jennifer` CLI as the primary user-facing entrypoint; keep `openclaw` only as a compatibility alias when needed.
 It answers you on the channels you already use (WhatsApp, Telegram, Slack, Discord, Google Chat, Signal, iMessage, BlueBubbles, IRC, Microsoft Teams, Matrix, Feishu, LINE, Mattermost, Nextcloud Talk, Nostr, Synology Chat, Tlon, Twitch, Zalo, Zalo Personal, WebChat). It can speak and listen on macOS/iOS/Android, and can render a live Canvas you control. The Gateway is just the control plane — the product is the assistant.
 
 If you want a personal, single-user assistant that feels local, fast, and always-on, this is it.
@@ -77,13 +77,30 @@ jennifer agent --message "Ship checklist" --thinking high
 
 Upgrading? [Updating guide](https://docs.openclaw.ai/install/updating) (and run `jennifer doctor`).
 
+## Jennifer Dashboard (local-first)
+
+Jennifer should not depend on Telegram as the primary control plane. For day-to-day operations, run and use the local dashboard first:
+
+```bash
+jennifer gateway --port 18789 --verbose
+jennifer dashboard
+```
+
+Recommended approach:
+
+- Dashboard/WebChat for primary control and observability
+- Telegram (or other channels) as messaging surfaces, not the only operator interface
+- Recovery/approval/status workflows should always be reachable from local dashboard + CLI
+
+Design notes: see `docs/jennifer/JENNIFER_DASHBOARD_STRATEGY.md`.
+
 ## Development channels
 
 - **stable**: tagged releases (`vYYYY.M.D` or `vYYYY.M.D-<patch>`), npm dist-tag `latest`.
 - **beta**: prerelease tags (`vYYYY.M.D-beta.N`), npm dist-tag `beta` (macOS app may be missing).
 - **dev**: moving head of `main`, npm dist-tag `dev` (when published).
 
-Switch channels (git + npm): `openclaw update --channel stable|beta|dev`.
+Switch channels (git + npm): `jennifer update --channel stable|beta|dev`.
 Details: [Development channels](https://docs.openclaw.ai/install/development-channels).
 
 ## From source (development)
@@ -104,7 +121,7 @@ pnpm jennifer onboard --install-daemon
 pnpm gateway:watch
 ```
 
-Note: `pnpm openclaw ...` runs TypeScript directly (via `tsx`). `pnpm build` produces `dist/` for running via Node / the packaged `openclaw` binary.
+Note: `pnpm jennifer ...` is the preferred command surface and runs TypeScript directly (via `tsx`). `pnpm openclaw ...` remains available for compatibility. `pnpm build` produces `dist/` for running via Node / the packaged binaries.
 
 ## Security defaults (DM access)
 
@@ -115,7 +132,7 @@ Full security guide: [Security](https://docs.openclaw.ai/gateway/security)
 Default behavior on Telegram/WhatsApp/Signal/iMessage/Microsoft Teams/Discord/Google Chat/Slack:
 
 - **DM pairing** (`dmPolicy="pairing"` / `channels.discord.dmPolicy="pairing"` / `channels.slack.dmPolicy="pairing"`; legacy: `channels.discord.dm.policy`, `channels.slack.dm.policy`): unknown senders receive a short pairing code and the bot does not process their message.
-- Approve with: `openclaw pairing approve <channel> <code>` (then the sender is added to a local allowlist store).
+- Approve with: `jennifer pairing approve <channel> <code>` (then the sender is added to a local allowlist store).
 - Public inbound DMs require an explicit opt-in: set `dmPolicy="open"` and include `"*"` in the channel allowlist (`allowFrom` / `channels.discord.allowFrom` / `channels.slack.allowFrom`; legacy: `channels.discord.dm.allowFrom`, `channels.slack.dm.allowFrom`).
 
 Run `jennifer doctor` to surface risky/misconfigured DM policies.
@@ -192,7 +209,7 @@ WhatsApp / Telegram / Slack / Discord / Google Chat / Signal / iMessage / BlueBu
 └──────────────┬────────────────┘
                │
                ├─ Pi agent (RPC)
-               ├─ CLI (openclaw …)
+               ├─ CLI (jennifer …)
                ├─ WebChat UI
                ├─ macOS app
                └─ iOS / Android nodes
@@ -283,7 +300,7 @@ The Gateway alone delivers a great experience. All apps are optional and add ext
 
 If you plan to build/run companion apps, follow the platform runbooks below.
 
-### macOS (OpenClaw.app) (optional)
+### macOS (Jennifer app / compatibility with OpenClaw.app) (optional)
 
 - Menu bar control for the Gateway and health.
 - Voice Wake + push-to-talk overlay.
@@ -296,13 +313,13 @@ Note: signed builds required for macOS permissions to stick across rebuilds (see
 
 - Pairs as a node over the Gateway WebSocket (device pairing).
 - Voice trigger forwarding + Canvas surface.
-- Controlled via `openclaw nodes …`.
+- Controlled via `jennifer nodes …`.
 
 Runbook: [iOS connect](https://docs.openclaw.ai/platforms/ios).
 
 ### Android node (optional)
 
-- Pairs as a WS node via device pairing (`openclaw devices ...`).
+- Pairs as a WS node via device pairing (`jennifer devices ...`).
 - Exposes Connect/Chat/Voice tabs plus Canvas, Camera, Screen capture, and Android device command families.
 - Runbook: [Android connect](https://docs.openclaw.ai/platforms/android).
 
@@ -336,7 +353,7 @@ Details: [Security guide](https://docs.openclaw.ai/gateway/security) · [Docker 
 
 ### [WhatsApp](https://docs.openclaw.ai/channels/whatsapp)
 
-- Link the device: `pnpm openclaw channels login` (stores creds in `~/.openclaw/credentials`).
+- Link the device: `pnpm jennifer channels login` (stores creds in `~/.openclaw/credentials`).
 - Allowlist who can talk to the assistant via `channels.whatsapp.allowFrom`.
 - If `channels.whatsapp.groups` is set, it becomes a group allowlist; include `"*"` to allow all.
 
