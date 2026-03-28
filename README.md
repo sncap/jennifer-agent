@@ -496,10 +496,8 @@ Use these when you’re past the onboarding flow and want the deeper reference.
 
 ## Jennifer branding
 
-This repo still uses the Jennifer package/module structure, but end-user branding now centers **Jennifer** as the assistant persona. 🦞
-by Peter Steinberger and the community.
+This repository is evolving into **Jennifer** — a private, owner-operated AI agent system focused on trustworthy execution, secure automation, and continuous improvement. 🦞
 
-- [jennifer.ai](https://jennifer.ai)
-- [soul.md](https://soul.md)
-- [steipete.me](https://steipete.me)
-- [@jennifer](https://x.com/jennifer)
+- [Jennifer project](https://github.com/sncap/Jennifer)
+- [Vision](VISION.md)
+- [Jennifer docs](https://docs.jennifer.ai)
