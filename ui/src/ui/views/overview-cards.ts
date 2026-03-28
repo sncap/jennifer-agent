@@ -116,6 +116,13 @@ export function renderOverviewCards(props: OverviewCardsProps) {
       hint: t("overview.stats.sessionsHint"),
     },
     {
+      kind: "nodes",
+      tab: "nodes",
+      label: "Node presence",
+      value: String(props.presenceCount ?? 0),
+      hint: props.presenceCount > 0 ? "online now" : "no live nodes",
+    },
+    {
       kind: "skills",
       tab: "skills",
       label: t("overview.cards.skills"),
