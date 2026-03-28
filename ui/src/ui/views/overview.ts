@@ -317,10 +317,10 @@ export function renderOverview(props: OverviewProps) {
                 <div class="login-gate__help" style="margin-top: 16px;">
                   <div class="login-gate__help-title">${t("overview.connection.title")}</div>
                   <ol class="login-gate__steps">
-                    <li>${t("overview.connection.step1")}<code>openclaw gateway run</code></li>
-                    <li>${t("overview.connection.step2")}<code>openclaw dashboard --no-open</code></li>
+                    <li>${t("overview.connection.step1")}<code>jennifer gateway run</code></li>
+                    <li>${t("overview.connection.step2")}<code>jennifer dashboard --no-open</code></li>
                     <li>${t("overview.connection.step3")}</li>
-                    <li>${t("overview.connection.step4")}<code>openclaw doctor --generate-gateway-token</code></li>
+                    <li>${t("overview.connection.step4")}<code>jennifer doctor --generate-gateway-token</code></li>
                   </ol>
                   <div class="login-gate__docs">
                     ${t("overview.connection.docsHint")}
@@ -390,6 +390,17 @@ export function renderOverview(props: OverviewProps) {
       presenceCount: props.presenceCount,
       onNavigate: props.onNavigate,
     })}
+
+    <section class="card" style="margin-top: 12px;">
+      <div class="card-title">Jennifer quick actions</div>
+      <div class="card-sub">Core operation shortcuts for approval, recovery, and verification</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+        <button class="btn" @click=${() => props.onNavigate("nodes")}>Open approval queue</button>
+        <button class="btn" @click=${() => props.onNavigate("debug")}>Open recovery panel</button>
+        <button class="btn" @click=${() => props.onNavigate("logs")}>Open runtime logs</button>
+        <button class="btn" @click=${props.onRefresh}>Refresh overview</button>
+      </div>
+    </section>
 
     ${renderOverviewAttention({ items: props.attentionItems })}
 

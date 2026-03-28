@@ -163,6 +163,7 @@ A task is complete when:
 - `docs/jennifer/JENNIFER_MEMORY_OPERATING_MODEL.md`
 - `docs/jennifer/JENNIFER_DASHBOARD_STRATEGY.md`
 - `docs/jennifer/JENNIFER_SELF_EVOLUTION_LOOP.md`
+- `docs/jennifer/JENNIFER_CORE_BOOT_PLAN.md`
 - `docs/jennifer/JENNIFER_SURFACE_MIGRATION_AUDIT.md`
 - `docs/jennifer/JENNIFER_GO_LIVE_CHECKLIST.md`
 - `docs/jennifer/JENNIFER_TOMORROW_TEST_PLAN.md`
