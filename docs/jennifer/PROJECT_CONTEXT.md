@@ -166,6 +166,8 @@ A task is complete when:
 - `docs/jennifer/JENNIFER_CORE_BOOT_PLAN.md`
 - `docs/jennifer/JENNIFER_FINANCE_NODE_SAFETY_MODEL.md`
 - `docs/jennifer/JENNIFER_FINANCE_SECURITY_CHECKLIST.md`
+- `docs/jennifer/JENNIFER_MEMORY_INTEGRATION_V1.md`
+- `docs/jennifer/JENNIFER_COLLAB_CHANNEL_RULES_V1.md`
 - `docs/jennifer/JENNIFER_UPDATE_OPERATIONS.md`
 - `docs/jennifer/JENNIFER_SURFACE_MIGRATION_AUDIT.md`
 - `docs/jennifer/JENNIFER_GO_LIVE_CHECKLIST.md`
