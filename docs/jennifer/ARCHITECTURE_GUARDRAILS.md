@@ -103,7 +103,21 @@ Use a private memory repo as shared operational memory for multi-node collaborat
 
 ---
 
-## 8. Definition of Done
+## 8. Finance/Trading Guardrail (Dual Control)
+
+For finance/trading-related automation:
+
+- never grant unrestricted autonomous trading authority
+- require owner approval for high-risk actions (new entry, size increase, stop-loss override)
+- prefer dual control (`Jennifer orchestrator` + `owner confirmation`)
+- enforce hard risk limits (per-order, daily loss, total exposure)
+- require kill-switch and audit trail for every execution path
+
+Use isolated execution nodes with least privilege (trade-only API keys, no withdrawal rights).
+
+---
+
+## 9. Definition of Done
 
 A change is complete only when:
 
