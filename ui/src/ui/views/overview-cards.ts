@@ -123,6 +123,20 @@ export function renderOverviewCards(props: OverviewCardsProps) {
       hint: props.presenceCount > 0 ? "online now" : "no live nodes",
     },
     {
+      kind: "approvals",
+      tab: "nodes",
+      label: "Approval queue",
+      value: "Review",
+      hint: "exec approvals & node actions",
+    },
+    {
+      kind: "recovery",
+      tab: "debug",
+      label: "Recovery",
+      value: "Ready",
+      hint: "Incredible Jenny paths",
+    },
+    {
       kind: "skills",
       tab: "skills",
       label: t("overview.cards.skills"),
